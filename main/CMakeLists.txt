@@ -1,0 +1,3 @@
+add_subdirectory(readwrite)
+add_subdirectory(writedimension)
+add_subdirectory(writehatch)
