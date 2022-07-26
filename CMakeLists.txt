@@ -1,9 +1,9 @@
-cmake_minimum_required (VERSION 3.1)
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/")
-include(ConfigureAllModules)    
-set(CMAKE_CXX_STANDARD 11)
+__files_group(${CMAKE_CURRENT_SOURCE_DIR}/dxf/ SRCS)
+set(LIBS)
+set(DEFS DXFLIB_DLL DXFLIB_LIBRARY _CRT_SECURE_NO_WARNINGS)
 
-project(dxflib)
+__add_real_target(dxflib dll SOURCE ${SRCS} LIB ${LIBS} DEF ${DEFS} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_subdirectory(src)
-add_subdirectory(main)
+if(CC_INSTALL_DXFLIB)
+	INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dxf DESTINATION include/ FILES_MATCHING PATTERN "*.h")
+endif()
